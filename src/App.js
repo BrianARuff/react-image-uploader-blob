@@ -5,18 +5,20 @@ import "./App.css";
 class App extends Component {
   state = {
     file: null,
-    error: null,
+    error: null
   };
 
   uploadfile = e => {
-    const validateImageRegex = (/\.(gif|jpg|jpeg|tiff|png)$/i);
+    const validateImageRegex = /\.(gif|jpg|jpeg|tiff|png)$/i;
     console.log(e.target.files[0]);
-    if(validateImageRegex.test(e.target.files[0].name)) {
+    if (validateImageRegex.test(e.target.files[0].name)) {
       this.setState({
         file: URL.createObjectURL(e.target.files[0])
       });
     } else {
-      this.setState({error: "Invalid Image Type. Type must be .gif, jpg, jpeg, tiff, png"});
+      this.setState({
+        error: "Invalid Image Type. Type must be .gif, jpg, jpeg, tiff, png"
+      });
     }
   };
 
@@ -30,15 +32,17 @@ class App extends Component {
               style={{ height: "100vh" }}
             >
               <React.Fragment>
-                {
-                  this.state.error ? 
-                  <div><h1>{this.state.error}</h1></div>
-                  : 
-                  !this.state.file ? (
+                {this.state.error ? (
+                  <div>
+                    <h4 className="display-4 alert alert-danger">{this.state.error}</h4>
+                  </div>
+                ) : !this.state.file ? (
                   <React.Fragment>
                     <input
                       className=""
-                      type="file" name="file" id="file"
+                      type="file"
+                      name="file"
+                      id="file"
                       onChange={this.uploadfile}
                       style={{
                         width: "0px",
@@ -49,9 +53,13 @@ class App extends Component {
                         zIndex: "-1"
                       }}
                     />
-                    <label htmlFor="file" style={{cursor: 'pointer'}}>
+                    <label htmlFor="file" style={{ cursor: "pointer" }}>
                       <div className="d-flex justify-content-center">
-                      <img src="http://www.stickpng.com/assets/images/586ac158b6fc1117b60b275f.png" style={{height: '30px'}} alt="upload-icon" />
+                        <img
+                          src="http://www.stickpng.com/assets/images/586ac158b6fc1117b60b275f.png"
+                          style={{ height: "30px" }}
+                          alt="upload-icon"
+                        />
                       </div>
                       <p className="font-weight-bold m-3">Choose a File</p>
                     </label>
@@ -63,11 +71,12 @@ class App extends Component {
                 )}
                 {this.state.file ? <Img file={this.state.file} /> : null}
                 {this.state.file ? (
-                  <button className="btn btn-success btn-block font-weight-bold mt-3">
-                    Submit
+                  <button onClick={() => {
+                    this.setState({file: null, error: null})
+                  }} className="btn btn-success btn-block font-weight-bold mt-3">
+                    Reset
                   </button>
-                ) : null
-                }
+                ) : null}
               </React.Fragment>
             </div>
           </div>
