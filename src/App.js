@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Img from "./Img";
 import "./App.css";
+import loadIcon from './loadIcon.png';
 
 class App extends Component {
   state = {
@@ -17,7 +18,7 @@ class App extends Component {
       });
     } else {
       this.setState({
-        error: "Invalid Image Type. Type must be .gif, jpg, jpeg, tiff, png"
+        error: "Invalid Image Type. Type must be .gif, .jpg, .jpeg, .tiff, .png"
       });
     }
   };
@@ -34,7 +35,7 @@ class App extends Component {
               <React.Fragment>
                 {this.state.error ? (
                   <div>
-                    <h4 className="display-4 alert alert-danger">{this.state.error}</h4>
+                    <h4 className="display-13 alert alert-danger">{this.state.error}</h4>
                   </div>
                 ) : !this.state.file ? (
                   <React.Fragment>
@@ -56,12 +57,12 @@ class App extends Component {
                     <label htmlFor="file" style={{ cursor: "pointer" }}>
                       <div className="d-flex justify-content-center">
                         <img
-                          src="http://www.stickpng.com/assets/images/586ac158b6fc1117b60b275f.png"
-                          style={{ height: "30px" }}
+                          src={loadIcon}
+                          style={{width: '50%', height: '50%'}}
                           alt="upload-icon"
                         />
                       </div>
-                      <p className="font-weight-bold m-3">Choose a File</p>
+                      <p className="font-weight-bold mx-3">Upload an Image</p>
                     </label>
                   </React.Fragment>
                 ) : (
