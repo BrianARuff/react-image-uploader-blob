@@ -4,15 +4,19 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    file: null
+    file: null,
+    error: null,
   };
 
   uploadfile = e => {
+    const validateImageRegex = (/\.(gif|jpg|jpeg|tiff|png)$/i);
     console.log(e.target.files[0]);
-    if(e.target.files[0].type.match(/[jpg][jpeg][png]/gi)) {
+    if(validateImageRegex.test(e.target.files[0].name)) {
       this.setState({
         file: URL.createObjectURL(e.target.files[0])
       });
+    } else {
+      this.setState({error: "Invalid Image Type. Type must be .gif, jpg, jpeg, tiff, png"});
     }
   };
 
@@ -26,7 +30,11 @@ class App extends Component {
               style={{ height: "100vh" }}
             >
               <React.Fragment>
-                {!this.state.file ? (
+                {
+                  this.state.error ? 
+                  <div><h1>{this.state.error}</h1></div>
+                  : 
+                  !this.state.file ? (
                   <React.Fragment>
                     <input
                       className=""
@@ -58,7 +66,8 @@ class App extends Component {
                   <button className="btn btn-success btn-block font-weight-bold mt-3">
                     Submit
                   </button>
-                ) : null}
+                ) : null
+                }
               </React.Fragment>
             </div>
           </div>
