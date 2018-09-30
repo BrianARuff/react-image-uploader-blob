@@ -74,7 +74,7 @@ class App extends Component {
                 {this.state.file ? (
                   <button onClick={() => {
                     this.setState({file: null, error: null})
-                  }} className="btn btn-info btn-block font-weight-bold mt-3">
+                  }} className="btn btn-block font-weight-bold mt-3" style={{background: '#329ADC', color: '#fff'}}>
                     Reset
                   </button>
                 ) : null}
