@@ -66,7 +66,7 @@ class App extends Component {
                     </label>
                   </React.Fragment>
                 ) : (
-                  <h4 className="font-weight-bold display-4 text-center">
+                  <h4 className="font-weight-bold display-4 text-center" style={{textShadow: '3px 3px 10px'}}>
                     Image Uploaded!
                   </h4>
                 )}
@@ -74,7 +74,7 @@ class App extends Component {
                 {this.state.file ? (
                   <button onClick={() => {
                     this.setState({file: null, error: null})
-                  }} className="btn btn-success btn-block font-weight-bold mt-3">
+                  }} className="btn btn-info btn-block font-weight-bold mt-3">
                     Reset
                   </button>
                 ) : null}
